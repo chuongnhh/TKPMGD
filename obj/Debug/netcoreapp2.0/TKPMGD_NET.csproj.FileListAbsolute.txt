@@ -1,0 +1,24 @@
+C:\Users\Nguyen Hoang Chuong\Desktop\TKPMGD_NET\TKPMGD_NET\bin\Debug\netcoreapp2.0\TKPMGD_NET.deps.json
+C:\Users\Nguyen Hoang Chuong\Desktop\TKPMGD_NET\TKPMGD_NET\bin\Debug\netcoreapp2.0\TKPMGD_NET.runtimeconfig.json
+C:\Users\Nguyen Hoang Chuong\Desktop\TKPMGD_NET\TKPMGD_NET\bin\Debug\netcoreapp2.0\TKPMGD_NET.runtimeconfig.dev.json
+C:\Users\Nguyen Hoang Chuong\Desktop\TKPMGD_NET\TKPMGD_NET\bin\Debug\netcoreapp2.0\TKPMGD_NET.dll
+C:\Users\Nguyen Hoang Chuong\Desktop\TKPMGD_NET\TKPMGD_NET\bin\Debug\netcoreapp2.0\TKPMGD_NET.pdb
+C:\Users\Nguyen Hoang Chuong\Desktop\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\TKPMGD_NET.csprojResolveAssemblyReference.cache
+C:\Users\Nguyen Hoang Chuong\Desktop\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\TKPMGD_NET.csproj.CoreCompileInputs.cache
+C:\Users\Nguyen Hoang Chuong\Desktop\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\Nguyen Hoang Chuong\Desktop\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\TKPMGD_NET.AssemblyInfoInputs.cache
+C:\Users\Nguyen Hoang Chuong\Desktop\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\TKPMGD_NET.AssemblyInfo.cs
+C:\Users\Nguyen Hoang Chuong\Desktop\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\TKPMGD_NET.dll
+C:\Users\Nguyen Hoang Chuong\Desktop\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\TKPMGD_NET.pdb
+C:\Users\Nguyen Hoang Chuong\Desktop\New folder\TKPMGD_NET\TKPMGD_NET\bin\Debug\netcoreapp2.0\TKPMGD_NET.deps.json
+C:\Users\Nguyen Hoang Chuong\Desktop\New folder\TKPMGD_NET\TKPMGD_NET\bin\Debug\netcoreapp2.0\TKPMGD_NET.runtimeconfig.json
+C:\Users\Nguyen Hoang Chuong\Desktop\New folder\TKPMGD_NET\TKPMGD_NET\bin\Debug\netcoreapp2.0\TKPMGD_NET.runtimeconfig.dev.json
+C:\Users\Nguyen Hoang Chuong\Desktop\New folder\TKPMGD_NET\TKPMGD_NET\bin\Debug\netcoreapp2.0\TKPMGD_NET.dll
+C:\Users\Nguyen Hoang Chuong\Desktop\New folder\TKPMGD_NET\TKPMGD_NET\bin\Debug\netcoreapp2.0\TKPMGD_NET.pdb
+C:\Users\Nguyen Hoang Chuong\Desktop\New folder\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\TKPMGD_NET.csprojResolveAssemblyReference.cache
+C:\Users\Nguyen Hoang Chuong\Desktop\New folder\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\TKPMGD_NET.csproj.CoreCompileInputs.cache
+C:\Users\Nguyen Hoang Chuong\Desktop\New folder\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\Nguyen Hoang Chuong\Desktop\New folder\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\TKPMGD_NET.AssemblyInfoInputs.cache
+C:\Users\Nguyen Hoang Chuong\Desktop\New folder\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\TKPMGD_NET.AssemblyInfo.cs
+C:\Users\Nguyen Hoang Chuong\Desktop\New folder\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\TKPMGD_NET.dll
+C:\Users\Nguyen Hoang Chuong\Desktop\New folder\TKPMGD_NET\TKPMGD_NET\obj\Debug\netcoreapp2.0\TKPMGD_NET.pdb

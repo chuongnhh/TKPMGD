@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Choose Lever";
+}
+
+
+<div id="app" class="tab-pane fade in active">
+    <div class="container">
+        <div class="col-lg-12">
+            <h3>Upload File</h3>
+            <div class="list" style="margin-bottom:50px">
+                <form id="form-upload" class="form-inline" asp-action="UploadFile" asp-controller="Home">
+                    <div class="form-group">
+                        <input class="form-control" name="InputFile" id="input-file" type="file" />
+                        <input class="btn btn-default" type="submit">
+                    </div>
+                </form>
+            </div>
+            @*<ul class="list" v-if="data!=null" style="padding-left:0px">
+                    <li v-for="d in data" style="list-style:none">
+                        <input class="form-control" type="text" name="" :value="d">
+                        <input class="pull-right" type="image" src="~/images/btnplay.png" alt="Submit" width="45" height="45">
+                    </li>
+                </ul>*@
+        </div>
+        <div class="col-lg-12">
+            <div class="text-center" v-if="data!=null">
+                <div v-for="d in data">
+                    <div v-bind:style="{display:d.display}" class="content-all" v-bind:id="'content-'+d.id">
+                        <h1>{{d.content}}</h1>
+                        <img src="~/images/mic.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div id="progressBar" class="progressBar">
+                <div class="bar"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    <script src="~/js/vue.min.js"></script>
+    <script src="~/lib/jquery.countdown-2.2.0/jquery.countdown.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.getJSON('/home/getsession?FileContent=FileContent', null, function (data) {
+                if (data.success == 1) {
+                    app.data = data.data;
+                    console.log(data.data);
+                }
+            });
+            progress(5, 5, $('.progressBar'));
+        });
+        var id = 1;
+        function progress(timeleft, timetotal, $element) {
+            var progressBarWidth = timeleft * $element.width() / timetotal;
+            $element.find('div').animate({ width: progressBarWidth }, 500).html(Math.floor(timeleft / 60) + ":" + timeleft % 60);
+            if (timeleft > 0) {
+                setTimeout(function () {
+                    progress(timeleft - 1, timetotal, $element);
+                }, 1000);
+            } else {
+                var lenth = $('.content-all').length;
+                if (id < lenth) {
+                    $('.content-all').hide();
+                    $('#content-' + id).show();
+                    id++;
+                    progress(5, 5, $('.progressBar'));
+                }
+            }
+        };
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                data: null
+            }
+        })
+
+        $(document).on('submit', '#form-upload', function (e) {
+            e.preventDefault();
+            var formData = new FormData();
+            formData.append("InputFile", $('#input-file')[0].files[0]);
+            $.ajax({
+                url: '/Home/UploadFile',
+                method: 'post',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.success == 1) {
+                        app.data = data.data;
+                        console.log(data.data);
+                    }
+                }
+            })
+        })
+    </script>
+}

@@ -1,0 +1,178 @@
+﻿@{
+    ViewData["Title"] = "Sentences";
+}
+@model TKPMGD_NET.Data.TestCase
+
+<div id="tab2" class="tab-pane fade in active">
+    <div class="row">
+        <div class="col-md-7 col-sm-6">
+            <form id="form-upload" class="form-inline hidden" asp-action="Sentences" asp-controller="Home" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input asp-for="Id" hidden />
+                    <input class="form-control" name="InputFile" id="input-file" type="file" />
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Add your sentences and test</h3>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <h3>
+                            <a class="btn btn-danger pull-right" href="javascript:void(0)" onclick="openFile()"><i class="glyphicon glyphicon-upload"></i> Upload file</a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            @{
+                int i = 1;
+            }
+            @foreach (var item in Model.Sentences) {
+                <div class="form-group">
+                    <div class="input-group lst-sentences" data-id="@item.Id">
+                        <span class="input-group-addon">
+                            <b>@(i++)</b>
+                        </span>
+                        <input type="text" id="sentence-@item.Id" value="@item.Content" data-id="@item.Id" class="form-control input-sentence @(item.Status=="PASS"?"my-green-color":item.Status=="FAIL"?"my-red-color":"my-black-color")" placeholder="Type your sentence">
+                        <span class="input-group-addon">
+                            <b id="countdown-@item.Id">0</b>
+                        </span>
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="button" onclick="readOutLoud($('#sentence-@item.Id').val())">
+                                <i class="glyphicon glyphicon-play text-success"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-5  col-sm-6">
+            <div class="box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Sentence</h3>
+                    </div>
+                </div> <hr />
+                <div class="form-group">
+                    <p id="recording-instructions">
+                        Press the <strong>Start Recognition</strong> button and allow access.
+                    </p>
+                </div>
+                <div class="form-group">
+                    <button id="start-record-btn" class="btn btn-primary" title="Start Recording">Start Recognition</button>
+                </div>
+
+                <div class="form-group">
+                    <p id="">
+                        Result: <strong id="my-result">No result availible</strong>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-default" title="Back" onclick="Back()"><i class="glyphicon glyphicon-arrow-left"></i> Back</button>
+                    <button class="btn btn-warning" title="Next" onclick="Next()"><i class="glyphicon glyphicon-arrow-right"></i> Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        function openFile() {
+            $('#input-file').click();
+        }
+        $('#input-file').on('change', function () {
+            $('#form-upload').submit();
+        })
+
+        var lstInterval = [];
+        var lstCount = 0;
+        var index = 0;
+        var lstItem = null;
+        $(document).ready(function () {
+            lstItem = $('.lst-sentences');
+            lstCount = $(lstItem).length;
+            if (lstCount > 0) {
+                $(lstItem[index]).addClass('my-border-color-red');
+            }
+
+            $('.input-sentence').on('blur', function () {
+                var id = $(this).data('id');
+                var value = $(this).val();
+                $.getJSON('/home/SaveSentence?id=' + id + '&sentence=' + value, function (data) {
+                    console.log(data);
+                })
+            })
+        })
+
+        function initInterval(id) {
+            var item = $('#countdown-' + id);
+            var count = parseInt($(item).html());
+            //if (count == null) { count = 0;}
+            $(item).html(count++);
+            console.log(count);
+            $(item).html(count);
+        }
+        function runInterval(id) {
+            lstInterval[id] = setInterval(
+                function () {
+                    var item = $('#countdown-' + id);
+                    var count = parseInt($(item).html());
+                    //if (count == null) { count = 0;}
+                    $(item).html(count++);
+                    console.log(count);
+                    $(item).html(count);
+                }, 1000);
+        }
+
+        function stopInterval(id) {
+            clearInterval(lstInterval[id]);
+        }
+
+        function Next() {
+            $(lstItem[index]).removeClass('my-border-color-red');
+            stopInterval($(lstItem[index]).data('id'));
+            index++;
+            if (index >= lstCount) {
+                index = lstCount - 1;
+            }
+            console.log(index);
+            $(lstItem[index]).addClass('my-border-color-red');
+            //runInterval($(lstItem[index]).data('id'));
+        }
+
+        function Back() {
+            $(lstItem[index]).removeClass('my-border-color-red');
+            stopInterval($(lstItem[index]).data('id'));
+            index--;
+            if (index <= 0) {
+                index = 0;
+            }
+            console.log(index);
+            $(lstItem[index]).addClass('my-border-color-red');
+        }
+
+        function Compare(id, val, time) {
+            $.getJSON('/home/Compare?id=' + id + '&sentence=' + val + '&time=' + time, function (data) {
+                console.log(data);
+                if (data.success == 1) {
+                    //$('#sentence-' + id).css('color', '#00ff90');
+                    $('#sentence-' + id).addClass('my-green-color');
+                    $('#sentence-' + id).removeClass('my-red-color');
+                    $('#sentence-' + id).removeClass('my-black-color');
+                } else if (data.success == 2) {
+                    //$('#sentence-' + id).css('color', 'ff6a00');
+                    $('#sentence-' + id).removeClass('my-green-color');
+                    $('#sentence-' + id).removeClass('my-black-color');
+                    $('#sentence-' + id).addClass('my-red-color');
+                } else {
+                    //$('#sentence-' + id).css('color', '000000');
+                    $('#sentence-' + id).addClass('my-black-color');
+                    $('#sentence-' + id).removeClass('my-green-color');
+                    $('#sentence-' + id).removeClass('my-red-color');
+                }
+            })
+        }
+    </script>
+}
